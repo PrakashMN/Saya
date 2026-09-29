@@ -7,8 +7,8 @@ export default function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-about">
-            <img src={logo} alt="Four Pillers Interiors" style={{ height: 68, width: 'auto', marginBottom: 16 }} />
-            <p>Transforming spaces into timeless works of art. We create bespoke interior designs that reflect your personality and elevate your lifestyle.</p>
+            <img src={logo} alt="Saya Studio Interiors &amp; Exteriors Designs" style={{ height: 68, width: 'auto', marginBottom: 16 }} />
+            <p>Transforming spaces inside and out. We create bespoke interior and exterior designs that reflect your personality and elevate your lifestyle.</p>
             <div className="footer-social">
               <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
               <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
@@ -36,6 +36,7 @@ export default function Footer() {
               <li><Link to="/services">Space Planning</Link></li>
               <li><Link to="/services">Furniture Design</Link></li>
               <li><Link to="/services">Lighting Design</Link></li>
+              <li><Link to="/services">Facade &amp; Elevation</Link></li>
             </ul>
           </div>
 
@@ -50,7 +51,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Four Pillers Interiors. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Saya Studio Interiors &amp; Exteriors Designs. All rights reserved.</p>
           <div className="footer-bottom-links">
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Service</a>

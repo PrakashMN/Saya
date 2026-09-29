@@ -9,7 +9,7 @@ export default function CtaSection() {
       <div className="container">
         <div className="cta-content">
           <h2>Let's Create Something Beautiful Together</h2>
-          <p>Transform your space into a masterpiece. Schedule a consultation with our expert designers today.</p>
+          <p>Transform your space from the inside out. Schedule a consultation with our design team today.</p>
           <Link to="/book-consultation" className="btn btn-primary">
             Book a Consultation <i className="fas fa-arrow-right"></i>
           </Link>

@@ -43,13 +43,13 @@ export default function Home() {
     <>
       <section className="hero" ref={heroSectionRef}>
         <div className="hero-bg" ref={heroParallaxRef}>
-          <img src={heroBg} alt="Premium Interior Design" />
+          <img src={heroBg} alt="Interior and exterior design by Saya Studio" />
         </div>
         <div className="container" ref={heroContentRef}>
           <div className="hero-content">
-            <span className="hero-tag">Premium Interior Design Studio</span>
-            <h1 className="hero-title">Designing Spaces That <span>Inspire</span> & Elevate</h1>
-            <p className="hero-desc">We craft bespoke interiors that blend timeless elegance with modern sophistication, transforming your vision into extraordinary living spaces.</p>
+            <span className="hero-tag">Interiors &amp; Exteriors Design Studio</span>
+            <h1 className="hero-title">Designing Spaces That <span>Inspire</span> &amp; Elevate</h1>
+            <p className="hero-desc">We craft bespoke interiors and exteriors that blend timeless elegance with modern sophistication, transforming your vision into extraordinary spaces.</p>
             <div className="hero-actions">
               <Link to="/portfolio" className="btn btn-primary">View Our Work <i className="fas fa-arrow-right"></i></Link>
               <Link to="/book-consultation" className="btn btn-outline-light">Book Consultation</Link>
@@ -68,7 +68,7 @@ export default function Home() {
           <div className="section-header">
             <span className="section-tag">What We Do</span>
             <h2 className="section-title">Our Premium Services</h2>
-            <p className="section-subtitle">From concept to completion, we offer comprehensive interior design services tailored to your unique vision.</p>
+            <p className="section-subtitle">From concept to completion, we offer comprehensive interior and exterior design services tailored to your unique vision.</p>
           </div>
           <div className="services-grid">
             {services.slice(0, 3).map((s, i) => (
@@ -119,7 +119,7 @@ export default function Home() {
           <div className="about-intro">
             <div className="about-intro-image">
               <div className="about-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" alt="About Four Pillers Interiors" />
+                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" alt="About Saya Studio" />
               </div>
               <div className="experience-badge">
                 <div className="number">15+</div>
@@ -128,8 +128,8 @@ export default function Home() {
             </div>
             <div className="about-intro-text">
               <span className="section-tag">About Us</span>
-              <h2>Creating Timeless Interiors Since 2009</h2>
-              <p>Four Pillers Interiors is a premier design studio dedicated to creating extraordinary spaces that blend beauty with functionality. Our team of award-winning designers brings passion and precision to every project.</p>
+              <h2>Designing Interiors &amp; Exteriors That Endure</h2>
+              <p>Saya Studio is a design studio dedicated to creating extraordinary spaces that blend beauty with functionality — inside your home and out. Our team brings passion and precision to every project.</p>
               <p>We believe that great design has the power to transform lives. Every space we create tells a unique story, reflecting the personality and aspirations of our clients.</p>
               <div className="about-features">
                 <div className="about-feature-item">

@@ -44,28 +44,28 @@ export default function Contact() {
           <div className="contact-grid">
             <div className="contact-info">
               <h2>Let's Start a Conversation</h2>
-              <p>Have a project in mind? We'd love to hear from you. Reach out and let's discuss how we can transform your space.</p>
+              <p>Have a project in mind? We'd love to hear from you. Reach out and let's discuss how we can transform your space — inside and out.</p>
               
               <div className="contact-details">
                 <div className="contact-detail-item">
                   <div className="icon"><i className="fas fa-map-marker-alt"></i></div>
                   <div>
                     <h4>Our Studio</h4>
-                    <p>42, Design District, Andheri West<br />Mumbai — 400053, India</p>
+                    <p>Studio address, Basaveshwar Nagar<br />Hubballi — 580020, Karnataka, India</p>
                   </div>
                 </div>
                 <div className="contact-detail-item">
                   <div className="icon"><i className="fas fa-phone-alt"></i></div>
                   <div>
                     <h4>Phone</h4>
-                    <p>+91 98765 43210</p>
+                    <p>+91 XXXXX XXXXX</p>
                   </div>
                 </div>
                 <div className="contact-detail-item">
                   <div className="icon"><i className="fas fa-envelope"></i></div>
                   <div>
                     <h4>Email</h4>
-                    <p>hello@fourpillersinteriors.com</p>
+                    <p>hello@sayastudio.in</p>
                   </div>
                 </div>
                 <div className="contact-detail-item">
@@ -101,6 +101,7 @@ export default function Contact() {
                     <option value="">Select a subject</option>
                     <option value="residential">Residential Design</option>
                     <option value="commercial">Commercial Design</option>
+                    <option value="exterior">Exterior &amp; Facade Design</option>
                     <option value="consultation">Consultation</option>
                     <option value="other">Other</option>
                   </select>

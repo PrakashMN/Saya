@@ -32,9 +32,9 @@ export default function About() {
             <div className="about-intro-text">
               <span className="section-tag">Our Story</span>
               <h2>Passion Meets Precision in Every Space</h2>
-              <p>Founded in 2009, Four Pillers Interiors has grown from a small design studio into one of the most respected interior design firms in the country. Our journey has been defined by a relentless pursuit of excellence and an unwavering commitment to our clients' vision.</p>
+              <p>Saya Studio has grown from a small design studio in Hubballi into a full-service interiors and exteriors practice. Our journey has been defined by a relentless pursuit of quality and an unwavering commitment to our clients' vision.</p>
               <p>We believe that great design is not just about aesthetics—it's about creating spaces that enhance the way people live, work, and connect. Every project we undertake is a collaboration, a dialogue between our expertise and your dreams.</p>
-              <p>Our team of talented designers, architects, and craftsmen brings together diverse perspectives and specialized skills to deliver interiors that are both beautiful and functional.</p>
+              <p>Our team of talented designers, architects, and craftsmen brings together diverse perspectives and specialized skills to deliver spaces that are both beautiful and functional — from the rooms you live in to the facade and landscape outside.</p>
               <div className="about-features" style={{ marginTop: '32px' }}>
                 <div className="about-feature-item">
                   <div className="icon"><i className="fas fa-check-circle"></i></div>

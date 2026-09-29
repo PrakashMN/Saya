@@ -25,11 +25,11 @@ function ScrollToTop() {
 
 export default function App() {
   const [loading, setLoading] = useState(
-    () => sessionStorage.getItem('fp:loaded') === null
+    () => sessionStorage.getItem('saya:loaded') === null
   )
 
   useEffect(() => {
-    sessionStorage.setItem('fp:loaded', '1')
+    sessionStorage.setItem('saya:loaded', '1')
     if (!loading) return
     const timer = setTimeout(() => setLoading(false), 1200)
     return () => clearTimeout(timer)

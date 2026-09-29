@@ -12,6 +12,9 @@ const services = [
   { icon: 'fa-solid fa-tree', title: 'Interior Landscaping', desc: 'Biophilic design integration with indoor plants and green walls. We bring nature indoors to improve air quality and create calming environments.' },
   { icon: 'fa-solid fa-layer-group', title: 'Renovation & Styling', desc: 'Complete renovation services and home styling. We breathe new life into existing spaces with modern updates and thoughtful design interventions.' },
   { icon: 'fa-solid fa-drafting-compass', title: 'Consultation Services', desc: 'Expert design consultation for specific project needs. Get professional advice on materials, layouts, color schemes, and design direction.' },
+  { icon: 'fa-solid fa-city', title: 'Facade & Elevation Design', desc: 'Exterior facade and elevation design that gives your building a considered identity. We plan materials, shading and detailing so the outside reads as one design with the inside.' },
+  { icon: 'fa-solid fa-leaf', title: 'Landscape & Outdoor Living', desc: 'Garden, terrace and outdoor living design that extends your usable space beyond four walls — layout, planting, hardscape and outdoor lighting planned as a whole.' },
+  { icon: 'fa-solid fa-trowel-bricks', title: 'Structural & Weatherproofing', desc: 'Structural finishing, waterproofing and weatherproofing works for new builds and renovations. We detail the envelope properly so finishes last through every monsoon.' },
 ]
 
 const steps = [
@@ -32,7 +35,7 @@ export default function Services() {
           <div className="section-header">
             <span className="section-tag">What We Offer</span>
             <h2 className="section-title">Comprehensive Design Solutions</h2>
-            <p className="section-subtitle">From residential to commercial, we offer end-to-end interior design services tailored to your unique requirements.</p>
+            <p className="section-subtitle">From residential to commercial, we offer end-to-end interior and exterior design services tailored to your unique requirements.</p>
           </div>
           <div className="services-grid">
             {services.map((s, i) => (

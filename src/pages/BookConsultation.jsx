@@ -70,14 +70,14 @@ export default function BookConsultation() {
                   <div className="icon"><i className="fas fa-phone-alt"></i></div>
                   <div>
                     <h4>Prefer to call?</h4>
-                    <p>+91 98765 43210</p>
+                    <p>+91 XXXXX XXXXX</p>
                   </div>
                 </div>
                 <div className="contact-detail-item">
                   <div className="icon"><i className="fas fa-envelope"></i></div>
                   <div>
                     <h4>Prefer to email?</h4>
-                    <p>hello@fourpillersinteriors.com</p>
+                    <p>hello@sayastudio.in</p>
                   </div>
                 </div>
               </div>
@@ -115,6 +115,7 @@ export default function BookConsultation() {
                   <option value="">Select project type</option>
                   <option value="residential">Residential Design</option>
                   <option value="commercial">Commercial Design</option>
+                  <option value="exterior">Exterior &amp; Facade Design</option>
                   <option value="renovation">Renovation</option>
                   <option value="consultation">Design Consultation</option>
                   <option value="other">Other</option>

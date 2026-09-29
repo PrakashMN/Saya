@@ -6,15 +6,15 @@ import ScrollReveal from '../components/ScrollReveal'
 const categories = ['All', 'Residential', 'Commercial', 'Hospitality', 'Retail']
 
 const projects = [
-  { img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80', title: 'Modern Luxury Villa', cat: 'Residential', location: 'Mumbai' },
-  { img: 'https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=800&q=80', title: 'Executive Office Suite', cat: 'Commercial', location: 'Delhi' },
-  { img: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80', title: 'Minimalist Penthouse', cat: 'Residential', location: 'Bangalore' },
-  { img: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80', title: 'Boutique Hotel Lobby', cat: 'Hospitality', location: 'Goa' },
-  { img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80', title: 'Luxury Retail Store', cat: 'Retail', location: 'Delhi' },
-  { img: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80', title: 'Contemporary Apartment', cat: 'Residential', location: 'Pune' },
-  { img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80', title: 'Farmhouse Retreat', cat: 'Residential', location: 'Jaipur' },
-  { img: 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=800&q=80', title: 'Corporate Headquarters', cat: 'Commercial', location: 'Hyderabad' },
-  { img: 'https://images.unsplash.com/photo-1600585154084-4e5fe7c39198?auto=format&fit=crop&w=800&q=80', title: 'Beachfront Villa', cat: 'Residential', location: 'Goa' },
+  { img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80', title: 'Modern Luxury Villa', cat: 'Residential', location: 'Hubballi' },
+  { img: 'https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=800&q=80', title: 'Executive Office Suite', cat: 'Commercial', location: 'Belagavi' },
+  { img: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80', title: 'Minimalist Penthouse', cat: 'Residential', location: 'Dharwad' },
+  { img: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80', title: 'Boutique Hotel Lobby', cat: 'Hospitality', location: 'Gadag' },
+  { img: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80', title: 'Luxury Retail Store', cat: 'Retail', location: 'Hubballi' },
+  { img: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80', title: 'Contemporary Apartment', cat: 'Residential', location: 'Vijayapura' },
+  { img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80', title: 'Farmhouse Retreat', cat: 'Residential', location: 'Bagalkot' },
+  { img: 'https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=800&q=80', title: 'Corporate Headquarters', cat: 'Commercial', location: 'Hubballi' },
+  { img: 'https://images.unsplash.com/photo-1600585154084-4e5fe7c39198?auto=format&fit=crop&w=800&q=80', title: 'Beachfront Villa', cat: 'Residential', location: 'Mangaluru' },
 ]
 
 export default function Portfolio() {

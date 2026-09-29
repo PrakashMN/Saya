@@ -34,7 +34,7 @@ export default function Navbar() {
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container">
         <Link to="/" className="nav-logo">
-          <img src={logo} alt="Four Pillers Interiors" />
+          <img src={logo} alt="Saya Studio Interiors &amp; Exteriors Designs" />
         </Link>
 
         <div className="nav-links" style={{ display: menuOpen ? 'flex' : undefined }}>
