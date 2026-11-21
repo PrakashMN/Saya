@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import logo from '../assets/logo.webp'
+import site from '../site/config'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -12,10 +12,6 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  useEffect(() => {
-    setMenuOpen(false)
-  }, [location])
 
   const links = [
     { to: '/', label: 'Home' },
@@ -29,30 +25,51 @@ export default function Navbar() {
   ]
 
   const isActive = (path) => location.pathname === path
+  const closeMenu = () => setMenuOpen(false)
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} aria-label="Main navigation">
       <div className="container">
-        <Link to="/" className="nav-logo">
-          <img src={logo} alt="Saya Studio Interiors &amp; Exteriors Designs" />
+        <Link to="/" className="nav-logo" onClick={closeMenu}>
+          <img src={site.brand.logo} alt={site.brand.logoAlt} />
         </Link>
 
-        <div className="nav-links" style={{ display: menuOpen ? 'flex' : undefined }}>
+        <div
+          id="primary-nav"
+          className="nav-links"
+          style={{ display: menuOpen ? 'flex' : undefined }}
+        >
           {links.map((link) => (
             <Link
               key={link.to}
               to={link.to}
               className={isActive(link.to) ? 'active' : ''}
+              onClick={closeMenu}
             >
               {link.label}
             </Link>
           ))}
-          <Link to="/book-consultation" className="btn btn-primary mobile-btn">Book Consultation</Link>
+          <Link
+            to="/book-consultation"
+            className="btn btn-primary mobile-btn"
+            onClick={closeMenu}
+          >
+            Book Consultation
+          </Link>
         </div>
 
-        <Link to="/book-consultation" className="btn btn-primary desktop-btn">Book Consultation</Link>
+        <Link to="/book-consultation" className="btn btn-primary desktop-btn">
+          Book Consultation
+        </Link>
 
-        <button className="nav-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+        <button
+          type="button"
+          className="nav-toggle"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
+          aria-controls="primary-nav"
+        >
           <span></span>
           <span></span>
           <span></span>

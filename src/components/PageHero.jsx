@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import heroBg from '../assets/images/hero-bg.webp'
+import content from '../site/content'
 import useParallax from '../hooks/useParallax'
 
 export default function PageHero({ title, bgImage }) {
@@ -8,7 +8,12 @@ export default function PageHero({ title, bgImage }) {
   return (
     <section className="page-hero">
       <div className="page-hero-bg">
-        <img ref={parallaxRef} src={bgImage || heroBg} alt={title} />
+        <img
+          ref={parallaxRef}
+          src={bgImage || content.hero.image}
+          alt=""
+          aria-hidden="true"
+        />
       </div>
       <div className="container">
         <h1 className="page-hero-title">{title}</h1>

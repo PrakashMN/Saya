@@ -1,19 +1,44 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../assets/logo.webp'
+import site from '../site/config'
+import content from '../site/content'
+
+const socialLinks = [
+  { key: 'facebook', label: 'Facebook', icon: 'fab fa-facebook-f' },
+  { key: 'instagram', label: 'Instagram', icon: 'fab fa-instagram' },
+  { key: 'pinterest', label: 'Pinterest', icon: 'fab fa-pinterest-p' },
+  { key: 'houzz', label: 'Houzz', icon: 'fab fa-houzz' },
+]
 
 export default function Footer() {
+  const [subscribed, setSubscribed] = useState(false)
+
+  const handleNewsletter = (event) => {
+    event.preventDefault()
+    setSubscribed(true)
+  }
+
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-grid">
           <div className="footer-about">
-            <img src={logo} alt="Saya Studio Interiors &amp; Exteriors Designs" style={{ height: 68, width: 'auto', marginBottom: 16 }} />
-            <p>Transforming spaces inside and out. We create bespoke interior and exterior designs that reflect your personality and elevate your lifestyle.</p>
+            <img
+              src={site.brand.logo}
+              alt={site.brand.logoAlt}
+              style={{ height: 68, width: 'auto', marginBottom: 16 }}
+            />
+            <p>{content.footer.description}</p>
             <div className="footer-social">
-              <a href="#" aria-label="Facebook"><i className="fab fa-facebook-f"></i></a>
-              <a href="#" aria-label="Instagram"><i className="fab fa-instagram"></i></a>
-              <a href="#" aria-label="Pinterest"><i className="fab fa-pinterest-p"></i></a>
-              <a href="#" aria-label="Houzz"><i className="fab fa-houzz"></i></a>
+              {socialLinks.map((social) => (
+                <a
+                  key={social.key}
+                  href={site.social[social.key] || '#'}
+                  aria-label={social.label}
+                >
+                  <i className={social.icon}></i>
+                </a>
+              ))}
             </div>
           </div>
 
@@ -31,27 +56,42 @@ export default function Footer() {
           <div>
             <h4>Services</h4>
             <ul className="footer-links">
-              <li><Link to="/services">Residential Design</Link></li>
-              <li><Link to="/services">Commercial Design</Link></li>
-              <li><Link to="/services">Space Planning</Link></li>
-              <li><Link to="/services">Furniture Design</Link></li>
-              <li><Link to="/services">Lighting Design</Link></li>
-              <li><Link to="/services">Facade &amp; Elevation</Link></li>
+              {content.services.slice(0, 6).map((service) => (
+                <li key={service.title}>
+                  <Link to="/services">{service.title}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div className="footer-newsletter">
             <h4>Newsletter</h4>
             <p>Subscribe for design inspiration and updates.</p>
-            <div className="newsletter-form">
-              <input type="email" placeholder="Your email address" />
-              <button type="submit"><i className="fas fa-arrow-right"></i></button>
-            </div>
+            {subscribed ? (
+              <p style={{ color: 'rgba(255, 255, 255, 0.65)', fontSize: '0.85rem' }}>
+                Thanks — newsletter signup is not connected yet.
+              </p>
+            ) : (
+              <form className="newsletter-form" onSubmit={handleNewsletter}>
+                <input
+                  type="email"
+                  name="newsletter-email"
+                  placeholder="Your email address"
+                  aria-label="Email address"
+                  required
+                />
+                <button type="submit" aria-label="Subscribe">
+                  <i className="fas fa-arrow-right"></i>
+                </button>
+              </form>
+            )}
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Saya Studio Interiors &amp; Exteriors Designs. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} {site.brand.legalName}. All rights reserved.
+          </p>
           <div className="footer-bottom-links">
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Service</a>

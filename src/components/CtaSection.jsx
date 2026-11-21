@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import content from '../site/content'
 import useParallax from '../hooks/useParallax'
 
 export default function CtaSection() {
@@ -8,10 +9,10 @@ export default function CtaSection() {
       <div className="cta-section-parallax" ref={parallaxRef}></div>
       <div className="container">
         <div className="cta-content">
-          <h2>Let's Create Something Beautiful Together</h2>
-          <p>Transform your space from the inside out. Schedule a consultation with our design team today.</p>
+          <h2>{content.cta.title}</h2>
+          <p>{content.cta.description}</p>
           <Link to="/book-consultation" className="btn btn-primary">
-            Book a Consultation <i className="fas fa-arrow-right"></i>
+            {content.cta.button} <i className="fas fa-arrow-right"></i>
           </Link>
         </div>
       </div>

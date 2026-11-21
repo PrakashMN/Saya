@@ -13,7 +13,45 @@ import Testimonials from './pages/Testimonials'
 import Faq from './pages/Faq'
 import Contact from './pages/Contact'
 import BookConsultation from './pages/BookConsultation'
-import Proposal from './pages/Proposal'
+import NotFound from './pages/NotFound'
+import site from './site/config'
+
+const routeTitles = {
+  '/': null,
+  '/about': 'About Us',
+  '/services': 'Services',
+  '/portfolio': 'Portfolio',
+  '/gallery': 'Gallery',
+  '/testimonials': 'Testimonials',
+  '/faq': 'FAQ',
+  '/contact': 'Contact',
+  '/book-consultation': 'Book a Consultation',
+}
+
+function hasLoaded() {
+  try {
+    return sessionStorage.getItem(`${site.slug}:loaded`) !== null
+  } catch {
+    return true
+  }
+}
+
+function markLoaded() {
+  try {
+    sessionStorage.setItem(`${site.slug}:loaded`, '1')
+  } catch {
+    // Storage can be unavailable in private modes; the site still works.
+  }
+}
+
+function PageMeta() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    const page = routeTitles[pathname]
+    document.title = page ? `${page} | ${site.brand.name}` : site.seo.title
+  }, [pathname])
+  return null
+}
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -24,12 +62,10 @@ function ScrollToTop() {
 }
 
 export default function App() {
-  const [loading, setLoading] = useState(
-    () => sessionStorage.getItem('saya:loaded') === null
-  )
+  const [loading, setLoading] = useState(() => !hasLoaded())
 
   useEffect(() => {
-    sessionStorage.setItem('saya:loaded', '1')
+    markLoaded()
     if (!loading) return
     const timer = setTimeout(() => setLoading(false), 1200)
     return () => clearTimeout(timer)
@@ -38,6 +74,7 @@ export default function App() {
   return (
     <>
       {loading && <LoadingScreen />}
+      <PageMeta />
       <ScrollToTop />
       <Navbar />
       <main>
@@ -51,7 +88,7 @@ export default function App() {
           <Route path="/faq" element={<Faq />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/book-consultation" element={<BookConsultation />} />
-          <Route path="/proposal" element={<Proposal />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
