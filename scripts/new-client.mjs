@@ -165,7 +165,11 @@ function escapeXml(value) {
 }
 
 function initials(name) {
-  const words = name.split(/\s+/).filter(Boolean)
+  const words = name
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .split(/[^a-zA-Z0-9]+/)
+    .filter(Boolean)
   if (words.length === 0) return 'S'
   if (words.length === 1) return words[0].slice(0, 2).toUpperCase()
   return (words[0][0] + words[1][0]).toUpperCase()
