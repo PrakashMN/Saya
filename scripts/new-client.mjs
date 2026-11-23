@@ -364,7 +364,19 @@ async function writeClientReadme(outDir, { name, city, phone, email }) {
 
 async function registerClient({ name, slug, city, phone, email }) {
   const file = path.join(templateDir, 'CLIENTS.md')
-  if (!existsSync(file)) return false
+  if (!existsSync(file)) {
+    const initialRegistry = [
+      '# Client Registry',
+      '',
+      'Local-only registry for studios generated from this template. Do not commit contact details.',
+      '',
+      '| Studio | Slug / repo | City | Phone | Email | Created |',
+      '|---|---|---|---|---|---|',
+      '<!-- clients -->',
+      '',
+    ].join('\n')
+    await writeFile(file, initialRegistry)
+  }
   const source = await readFile(file, 'utf8')
   if (source.includes('`' + slug + '`')) return false
   const marker = '<!-- clients -->'
