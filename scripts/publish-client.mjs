@@ -94,6 +94,16 @@ function run(command, args, { cwd = clientDir, capture = false } = {}) {
   }
 }
 
+function runNpm(args) {
+  if (process.platform !== 'win32') {
+    run('npm', args)
+    return
+  }
+
+  const command = process.env.ComSpec || 'cmd.exe'
+  run(command, ['/d', '/s', '/c', `npm ${args.join(' ')}`])
+}
+
 const branch = run('git', ['branch', '--show-current'], { capture: true }).trim()
 if (branch !== 'main') fail(`Expected branch "main", found "${branch || 'detached HEAD'}".`)
 
@@ -119,10 +129,10 @@ if (has('dry-run')) {
 }
 
 if (!existsSync(path.join(clientDir, 'node_modules'))) {
-  run('npm', ['ci'])
+  runNpm(['ci'])
 }
-run('npm', ['run', 'lint'])
-run('npm', ['run', 'build'])
+runNpm(['run', 'lint'])
+runNpm(['run', 'build'])
 run('gh', [
   'repo',
   'create',
