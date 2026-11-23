@@ -39,7 +39,7 @@ Options
   --dry-run                Validate and preview; do not install, build, or publish
   --help                   Show this help
 
-This validates lint/build, creates a private GitHub repository, and pushes main.
+This validates audit/lint/build, creates a private GitHub repository, and pushes main.
 It intentionally does not deploy to Vercel.
 `)
   process.exit(0)
@@ -122,7 +122,7 @@ const repoName = `${owner}/${slug}`
 
 if (has('dry-run')) {
   console.log(`\nDry run passed for ${clientDir}`)
-  console.log(`  Would validate: npm ci, npm run lint, npm run build`)
+  console.log(`  Would validate: npm ci, npm audit, npm run lint, npm run build`)
   console.log(`  Would create:   private GitHub repo ${repoName}`)
   console.log(`  Would push:     main`)
   process.exit(0)
@@ -131,6 +131,7 @@ if (has('dry-run')) {
 if (!existsSync(path.join(clientDir, 'node_modules'))) {
   runNpm(['ci'])
 }
+runNpm(['audit'])
 runNpm(['run', 'lint'])
 runNpm(['run', 'build'])
 run('gh', [

@@ -77,7 +77,7 @@ Each client gets its own sibling folder and its own first commit.
 
 ## Publish a client repo to GitHub
 
-The publishing helper runs lint/build, creates a **private** repo under `PrakashMN`, and pushes `main`:
+The publishing helper runs `npm audit`, lint, and build, then creates a **private** repo under `PrakashMN` and pushes `main`:
 
 ```powershell
 node scripts/publish-client.mjs --dir "../studio-name"
