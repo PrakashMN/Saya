@@ -9,6 +9,10 @@ import content from '../site/content'
 export default function Contact() {
   const { status, submit, reset } = useFormSubmit()
   const tel = phoneHref(site.contact.phone)
+  const hasAddress = site.contact.addressLines?.length > 0
+  const hasPhone = Boolean(site.contact.phone)
+  const hasEmail = Boolean(site.contact.email)
+  const hasHours = Boolean(site.contact.hours)
 
   if (status !== 'idle' && status !== 'submitting') {
     return (
@@ -35,47 +39,55 @@ export default function Contact() {
                 </p>
 
                 <div className="contact-details">
-                  <div className="contact-detail-item">
-                    <div className="icon"><i className="fas fa-map-marker-alt"></i></div>
-                    <div>
-                      <h4>Our Studio</h4>
-                      <p>
-                        {site.contact.addressLines.map((line, index) => (
-                          <span key={line}>
-                            {line}
-                            {index < site.contact.addressLines.length - 1 && <br />}
-                          </span>
-                        ))}
-                      </p>
+                  {hasAddress && (
+                    <div className="contact-detail-item">
+                      <div className="icon"><i className="fas fa-map-marker-alt"></i></div>
+                      <div>
+                        <h4>Our Studio</h4>
+                        <p>
+                          {site.contact.addressLines.map((line, index) => (
+                            <span key={line}>
+                              {line}
+                              {index < site.contact.addressLines.length - 1 && <br />}
+                            </span>
+                          ))}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="contact-detail-item">
-                    <div className="icon"><i className="fas fa-phone-alt"></i></div>
-                    <div>
-                      <h4>Phone</h4>
-                      <p>
-                        {tel ? (
-                          <a href={tel}>{site.contact.phone}</a>
-                        ) : (
-                          site.contact.phone
-                        )}
-                      </p>
+                  )}
+                  {hasPhone && (
+                    <div className="contact-detail-item">
+                      <div className="icon"><i className="fas fa-phone-alt"></i></div>
+                      <div>
+                        <h4>Phone</h4>
+                        <p>
+                          {tel ? (
+                            <a href={tel}>{site.contact.phone}</a>
+                          ) : (
+                            site.contact.phone
+                          )}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="contact-detail-item">
-                    <div className="icon"><i className="fas fa-envelope"></i></div>
-                    <div>
-                      <h4>Email</h4>
-                      <p><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p>
+                  )}
+                  {hasEmail && (
+                    <div className="contact-detail-item">
+                      <div className="icon"><i className="fas fa-envelope"></i></div>
+                      <div>
+                        <h4>Email</h4>
+                        <p><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="contact-detail-item">
-                    <div className="icon"><i className="fas fa-clock"></i></div>
-                    <div>
-                      <h4>Working Hours</h4>
-                      <p>{site.contact.hours}</p>
+                  )}
+                  {hasHours && (
+                    <div className="contact-detail-item">
+                      <div className="icon"><i className="fas fa-clock"></i></div>
+                      <div>
+                        <h4>Working Hours</h4>
+                        <p>{site.contact.hours}</p>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
 

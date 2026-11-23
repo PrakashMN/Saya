@@ -80,12 +80,14 @@ export default function About() {
                       >
                         <i className="fab fa-twitter"></i>
                       </a>
-                      <a
-                        href={`mailto:${site.contact.email}`}
-                        aria-label={`Email ${member.name}`}
-                      >
-                        <i className="fas fa-envelope"></i>
-                      </a>
+                      {site.contact.email && (
+                        <a
+                          href={`mailto:${site.contact.email}`}
+                          aria-label={`Email ${member.name}`}
+                        >
+                          <i className="fas fa-envelope"></i>
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>

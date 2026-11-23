@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "new-client": "node scripts/new-client.mjs"
+    "new-client": "node scripts/new-client.mjs",
+    "publish-client": "node scripts/publish-client.mjs"
   },
   "dependencies": {
     "react": "^19.2.6",

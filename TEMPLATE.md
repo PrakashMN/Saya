@@ -1,6 +1,6 @@
 # Studio Site Template — Agency Workflow
 
-This repository is the source template for 10 interior-design studio sites. Each studio gets its own folder, GitHub repository and Vercel project. Only the branding and content differ; the application code is shared.
+This repository is the source template for interior-design studio sites. Each studio gets its own folder and private GitHub repository. Only the branding and content differ; the application code is shared.
 
 > This file is internal. It is excluded when a client repo is scaffolded.
 
@@ -51,6 +51,8 @@ What the script does:
 
 It does **not** install dependencies, create the GitHub repo or create the Vercel project. Those steps are below.
 
+Unverified details can be left empty with `--no-phone`, `--no-email`, `--no-address`, and `--no-hours`. Empty contact details are omitted from the generated site's contact panels.
+
 ### Batch scaffold all 10
 
 Once you have the details, run one loop from PowerShell:
@@ -74,6 +76,14 @@ foreach ($c in $clients) {
 Each client gets its own sibling folder and its own first commit.
 
 ## Publish a client repo to GitHub
+
+The publishing helper runs lint/build, creates a **private** repo under `PrakashMN`, and pushes `main`:
+
+```powershell
+node scripts/publish-client.mjs --dir "../studio-name"
+```
+
+It does not deploy to Vercel. Client content, contact endpoints, commercial plan eligibility, and deployment protection should be reviewed before a site is made public.
 
 If `gh` is not installed, install it once:
 
@@ -147,7 +157,7 @@ If the number of clients grows, consider moving shared code to an npm package or
 
 ## Internal material
 
-These files stay in the template repo and are excluded from client scaffolds:
+These files stay in the local template workspace and are excluded from client scaffolds. `CLIENTS.md` is git-ignored so client contact details are not pushed to the public template repo:
 
 - `TEMPLATE.md` — this document
 - `CLIENTS.md` — client registry

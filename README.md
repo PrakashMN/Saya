@@ -67,4 +67,4 @@ The site is static. Build with `npm run build` and deploy `dist/` to Vercel (or 
 
 ## Building the other studio sites
 
-This repo is also the source template for the other studio sites. See **`TEMPLATE.md`** for the scaffolding, GitHub and Vercel workflow, and `CLIENTS.md` for the client registry.
+This repo is also the source template for the other studio sites. See **`TEMPLATE.md`** for the scaffolding, private GitHub publishing, and later Vercel launch workflow. `CLIENTS.md` is a local-only registry and is not published to this public repository.

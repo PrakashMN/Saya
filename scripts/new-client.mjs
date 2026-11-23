@@ -44,6 +44,10 @@ Options
   --address "Line 1|Line 2"   Address lines separated by |
   --hours "Mon - Sat: 10-7"   Business hours
   --secondary "#96AC9F"       Accent colour (6-digit hex)
+  --no-phone                 Leave phone empty until verified
+  --no-email                 Leave email empty until verified
+  --no-address               Leave address empty until verified
+  --no-hours                 Leave hours empty until verified
   --out "../studio-name"      Output folder (default: sibling of this repo)
   --no-git                    Skip git init + first commit
   --force                     Replace the output folder if it exists
@@ -83,14 +87,27 @@ if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
 }
 
 const city = flag('city', 'Your City')
-const phone = flag('phone', '+91 XXXXX XXXXX')
-const email = flag('email', `hello@${slug}.in`)
-const hours = flag('hours', 'Mon - Sat: 10:00 AM - 7:00 PM')
+const phone = has('no-phone') ? '' : flag('phone', '+91 XXXXX XXXXX')
+const email = has('no-email') ? '' : flag('email', `hello@${slug}.in`)
+const hours = has('no-hours') ? '' : flag('hours', 'Mon - Sat: 10:00 AM - 7:00 PM')
 const secondary = flag('secondary', '#96AC9F')
 const addressFlag = flag('address')
 const addressLines = addressFlag
   ? addressFlag.split('|').map((line) => line.trim()).filter(Boolean)
-  : [`Studio address, ${city}`, `${city}, Karnataka, India`]
+  : has('no-address')
+    ? []
+    : [`Studio address, ${city}`, `${city}, Karnataka, India`]
+
+for (const [valueFlag, noFlag] of [
+  ['phone', 'no-phone'],
+  ['email', 'no-email'],
+  ['address', 'no-address'],
+  ['hours', 'no-hours'],
+]) {
+  if (has(valueFlag) && has(noFlag)) {
+    fail(`Use either --${valueFlag} or --${noFlag}, not both.`)
+  }
+}
 
 if (!/^#[0-9a-fA-F]{6}$/.test(secondary)) {
   fail('--secondary must be a 6-digit hex colour, e.g. #96AC9F.')
@@ -254,7 +271,10 @@ async function updatePackageJson(outDir, slug) {
   const file = path.join(outDir, 'package.json')
   const pkg = JSON.parse(await readFile(file, 'utf8'))
   pkg.name = slug
-  if (pkg.scripts) delete pkg.scripts['new-client']
+  if (pkg.scripts) {
+    delete pkg.scripts['new-client']
+    delete pkg.scripts['publish-client']
+  }
   await writeFile(file, JSON.stringify(pkg, null, 2) + '\n')
 
   const lockFile = path.join(outDir, 'package-lock.json')
@@ -298,8 +318,8 @@ async function writeClientReadme(outDir, { name, city, phone, email }) {
     '',
     '## Current placeholders',
     '',
-    `- Phone: ${phone}`,
-    `- Email: ${email}`,
+    `- Phone: ${phone || 'Not provided yet'}`,
+    `- Email: ${email || 'Not provided yet'}`,
     '- Address and business hours in `src/site/config.js`',
     '- Portfolio, gallery, team and testimonial photos are Unsplash stock images',
     '- Testimonials, team bios and stats are placeholders',
@@ -326,6 +346,9 @@ async function writeClientReadme(outDir, { name, city, phone, email }) {
     '- [ ] Change `demo` to `false` in `src/site/config.js` (removes noindex)',
     '',
     '## Deploy to Vercel',
+    '',
+    'Before publishing, replace all placeholder copy and stock imagery, configure and test a real form endpoint, set the production URL, and set `demo` to `false` in `src/site/config.js`.',
+    'Confirm the account plan permits commercial client sites; Vercel Hobby is for non-commercial use.',
     '',
     '```bash',
     'npx vercel --prod',
@@ -427,25 +450,28 @@ async function main() {
   const files = await countFiles(outDir)
 
   const placeholders = []
-  if (!argv.includes('--phone')) placeholders.push('phone')
-  if (!argv.includes('--email')) placeholders.push('email')
+  if (!argv.includes('--phone') && !has('no-phone')) placeholders.push('phone')
+  if (!argv.includes('--email') && !has('no-email')) placeholders.push('email')
   if (!argv.includes('--city')) placeholders.push('city')
-  if (!argv.includes('--address')) placeholders.push('address')
+  if (!argv.includes('--address') && !has('no-address')) placeholders.push('address')
+  if (!argv.includes('--hours') && !has('no-hours')) placeholders.push('hours')
 
   console.log(`✔ Created ${outDir}`)
   console.log(`  Brand:    ${name} (${slug})`)
   console.log(`  City:     ${city}`)
-  console.log(`  Contact:  ${phone} · ${email}`)
+  console.log(
+    `  Contact:  ${[phone, email].filter(Boolean).join(' · ') || 'not provided yet'}`,
+  )
   console.log(`  Files:    ${files}`)
   if (gitDone) console.log('  Git:      initialised on main with the first commit')
-  if (registered) console.log('  Registry: added to CLIENTS.md')
+  if (registered) console.log('  Local registry: added to CLIENTS.md')
   if (placeholders.length) {
     console.log(`\n  Still placeholders: ${placeholders.join(', ')}`)
   }
 
   console.log(`
 Next steps
-  1. cd "${outDir}" && npm install
+  1. cd "${outDir}" && npm ci
   2. Replace public/brand/logo.svg and favicon.svg with the real logo
   3. Replace the Unsplash images in src/site/content.js with real project photos
   4. Replace placeholder testimonials, team, stats and about copy
@@ -453,9 +479,8 @@ Next steps
   6. Set seo.url and change demo to false before launch
 
 Publish
-  git remote add origin git@github.com:<your-org>/${slug}.git
-  git push -u origin main
-  npx vercel --prod
+  From the template repo: node scripts/publish-client.mjs --dir "${outDir}"
+  Vercel deployment follows after content, form and plan review.
 `)
 }
 

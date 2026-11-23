@@ -9,6 +9,8 @@ import content from '../site/content'
 export default function BookConsultation() {
   const { status, submit, reset } = useFormSubmit()
   const tel = phoneHref(site.contact.phone)
+  const hasPhone = Boolean(site.contact.phone)
+  const hasEmail = Boolean(site.contact.email)
   const today = new Date().toISOString().split('T')[0]
 
   if (status !== 'idle' && status !== 'submitting') {
@@ -49,28 +51,34 @@ export default function BookConsultation() {
                   ))}
                 </div>
 
-                <div className="contact-details" style={{ marginTop: '40px' }}>
-                  <div className="contact-detail-item">
-                    <div className="icon"><i className="fas fa-phone-alt"></i></div>
-                    <div>
-                      <h4>Prefer to call?</h4>
-                      <p>
-                        {tel ? (
-                          <a href={tel}>{site.contact.phone}</a>
-                        ) : (
-                          site.contact.phone
-                        )}
-                      </p>
-                    </div>
+                {(hasPhone || hasEmail) && (
+                  <div className="contact-details" style={{ marginTop: '40px' }}>
+                    {hasPhone && (
+                      <div className="contact-detail-item">
+                        <div className="icon"><i className="fas fa-phone-alt"></i></div>
+                        <div>
+                          <h4>Prefer to call?</h4>
+                          <p>
+                            {tel ? (
+                              <a href={tel}>{site.contact.phone}</a>
+                            ) : (
+                              site.contact.phone
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                    {hasEmail && (
+                      <div className="contact-detail-item">
+                        <div className="icon"><i className="fas fa-envelope"></i></div>
+                        <div>
+                          <h4>Prefer to email?</h4>
+                          <p><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  <div className="contact-detail-item">
-                    <div className="icon"><i className="fas fa-envelope"></i></div>
-                    <div>
-                      <h4>Prefer to email?</h4>
-                      <p><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p>
-                    </div>
-                  </div>
-                </div>
+                )}
               </div>
 
               <form className="consultation-form" onSubmit={submit}>
